@@ -1,0 +1,19 @@
+/*
+*
+*		                        	Tema 1 - Protocoale de comunicatie
+*			                                    	Server de fisiere 
+*		                                              	realizata de Lavinia Tache
+*			                                                   322CA
+*
+*/
+
+	Tema presupune implementarea unui protocol STOP AND WAIT in trei moduri diferite.
+Protocolul STOP AND WAIT presupune transmiterea unui ACK ori de cate ori s-a primit un mesaj si asteptarea unui ACK ori de cate ori a fost transmis un mesaj.
+Functionalitatile serverului de fisier sunt date de comenzile :
+  -> LS : care presupune transmiterea dimensiunii directorului si asteptarea unui ACK. Imediat ce acest ACK  a fost primit urmeaza transmiterea pe rand a fisierelor din director. Dupa fiecare fisier se asteapta un ACK. 
+  -> CD : care schimba directorul curent la directorul specificat in comanda
+  -> CP : primeste un fisier din care va citi si a carui dimensiune o va transmite clientului. Imediat ce a primit ACK pentru mesajul transmis , serverul trimite clientului fragmente de marimea dimensiunii maxime a mesajului , iar dupa fiecare fragment va astepta un ACK.Clientul este cel care se ocupa de crearea fisierului si de scrierea in fisier.
+  -> SN : este o comanda oarecum similara comenzii CP, dar de data aceasta clientul transmitedimensiunea si fisierul pe care serverul urmeaza sa il creeze si in care va scrie.
+
+Aceste functionalitati se respecta pe parcursul implementarii temei, fiind adaptate pentru cele doua tipuri de protocol ce au ca scop detectarea unei erori. Modul parity presupune calcularea paritatii mesajului si setarea acestuia pe primul bit din primul byte. In momentul in care se primeste un mesaj, se va calcula paritatea acestuia si se va verifica identitatea cu vaoarea deja setata de transmitator. Daca cele doua valori nu sunt egale se va trimite NACK si se va asteapta reluarea mesajului. In cadrului protocolul ce utilizeaza detectearea unui erori prin cod Hamming, eroarea detectata va fi corectata.
+Eroarea poate fi detectata usor cu ajutorul bitilor de control.Bitii de control sunt bitii puteri ale lui 2, iar protocolul presupune codificarea si decodificarea unui mesaj.
